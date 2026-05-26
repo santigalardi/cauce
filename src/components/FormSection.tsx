@@ -1,9 +1,9 @@
 import Image from "next/image";
 
 const DELIVERABLES = [
-  "Diagnóstico de tu tasa de ausentismo",
-  "Demo del bot funcionando con un caso real",
-  "Estimación de ROI para tu clínica específica",
+  "Tasa promedio de respuesta que vas a manejar",
+  "Demo del bot con datos reales de una clínica",
+  "Experiencia de +6 años aplicada a tu caso",
 ];
 
 export default function FormSection() {
@@ -54,10 +54,9 @@ export default function FormSection() {
             </h2>
 
             <p className="text-[16px] md:text-[18px] text-body leading-[1.65] mb-10 max-w-xl">
-              Hacé clic en el botón flotante de abajo a la derecha y contanos
-              quién sos en menos de un minuto. Un especialista de PrestoBots
-              te escribe por WhatsApp para coordinar la demo y mostrarte
-              cuánto podés recuperar.
+              Contanos quién sos en menos de un minuto. Validamos tu caso y te
+              habilitamos la demo en WhatsApp para que veas cómo opera el bot
+              con datos reales.
             </p>
 
             {/* Lo que te llevás */}

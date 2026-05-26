@@ -95,8 +95,8 @@ export default function Product() {
           <div className="lg:col-span-5 lg:pt-4">
             <p className="text-[16px] md:text-[17px] text-body leading-[1.65] max-w-md">
               El paciente conversa por WhatsApp, el bot recopila los detalles
-              y agenda el turno. Después confirma asistencia y envía
-              recordatorios automáticos, sin formularios ni esperas para tu equipo.
+              y agenda el turno. Después envía recordatorios automáticos que
+              confirman la asistencia, sin formularios ni esperas para tu equipo.
             </p>
           </div>
         </div>

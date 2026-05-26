@@ -99,9 +99,9 @@ export default function Hero() {
             </h1>
 
             <p className="text-[17px] md:text-[19px] text-body leading-[1.55] max-w-[560px] mb-10 rise rise-3">
-              Bot de WhatsApp con IA, integrado nativamente a tu HIS. Automatiza el
-              ciclo completo del turno, audita cada interacción y elimina la fuga de
-              ingresos que tus planillas no pueden ver.
+              Bot de WhatsApp integrado nativamente a tu HIS. Automatiza el
+              ciclo completo del turno, audita conversaciones, conocé a tu cliente y
+              eliminá la fuga de ingresos que tus planillas no pueden ver.
             </p>
 
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mb-12 rise rise-4">

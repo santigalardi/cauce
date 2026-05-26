@@ -13,7 +13,7 @@ const PILLARS = [
     icon: "/icons/experience.png",
     title: "Scoring de pacientes",
     description:
-      "Calificación automática por perfil e historial. Tu equipo prioriza a quien tiene mayor probabilidad de presentarse.",
+      "Calificamos a cada paciente con datos propios de PrestoBots, combinados con la asistencia real de tu HIS. Tu equipo prioriza a quien tiene mayor probabilidad de presentarse.",
   },
   {
     n: "03",
@@ -129,8 +129,8 @@ export default function Pillars() {
               </h3>
               <p className="text-[14px] md:text-[15px] text-white/65 leading-[1.6] max-w-sm">
                 Los datos alimentan el scoring, el scoring prioriza a quién
-                contactar primero, y todo ocurre dentro de tu HIS — no en otra
-                pantalla más para tu equipo.
+                contactar primero, y todo se ejecuta integrado a tu HIS — sin
+                sumar otra pantalla más a tu equipo.
               </p>
             </div>
             <a

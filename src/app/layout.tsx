@@ -36,13 +36,12 @@ export const metadata: Metadata = {
     template: "%s | PrestoBots Salud",
   },
   description:
-    "Bot de WhatsApp con IA integrado nativamente a tu HIS. +1M turnos gestionados, 80% autogestión, +200K chats/mes. Recuperá la facturación que tu agenda pierde en silencio.",
+    "Bot de WhatsApp integrado nativamente a tu HIS. +1M turnos gestionados, 80% autogestión, +200K chats/mes. Recuperá la facturación que tu agenda pierde en silencio.",
   applicationName: "PrestoBots Salud",
   keywords: [
     "agenda médica",
     "WhatsApp clínica",
     "turnos automatizados",
-    "IA salud",
     "PrestoBots",
     "Geclisa",
     "ausentismo clínicas",
@@ -56,7 +55,7 @@ export const metadata: Metadata = {
     siteName: "PrestoBots Salud",
     title: "PrestoBots Salud — Infraestructura de rentabilidad para clínicas",
     description:
-      "Bot de WhatsApp con IA, integrado nativamente a tu HIS. Reducí el ausentismo y recuperá la facturación que tu agenda pierde en silencio.",
+      "Bot de WhatsApp integrado nativamente a tu HIS. Reducí el ausentismo y recuperá la facturación que tu agenda pierde en silencio.",
   },
   twitter: {
     card: "summary_large_image",

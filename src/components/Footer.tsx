@@ -32,7 +32,7 @@ export default function Footer() {
             </a>
             <p className="text-sm leading-relaxed max-w-md">
               Centro de contacto inteligente especializado en clínicas y hospitales.
-              Automatizamos el ciclo completo del turno con IA en WhatsApp, integrado a
+              Automatizamos el ciclo completo del turno en WhatsApp, integrado a
               tu sistema de gestión.
             </p>
           </div>

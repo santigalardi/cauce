@@ -44,7 +44,7 @@ const PAINS = [
     label: "PROACTIVIDAD",
     title: "El paciente que ya conocés cuesta 5× menos que uno nuevo.",
     description:
-      "Mientras gastás en captar pacientes nuevos, los que ya tenés se olvidan de su control anual. Un recordatorio automático reactiva el 20% de tu base sin un peso de publicidad.",
+      "Mientras gastás en captar pacientes nuevos, los que ya tenés se olvidan de su control anual. Con PrestoBots reactivás tu base con campañas de recordatorio por WhatsApp, sin un peso de publicidad.",
   },
 ];
 
