@@ -48,3 +48,6 @@ next-env.d.ts
 
 # notas locales
 notas*.txt
+
+# campañas de Google Ads (CSV, generadores) — no subir al repo
+ads/
