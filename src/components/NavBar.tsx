@@ -48,7 +48,9 @@ export default function NavBar() {
             ))}
           </nav>
           <a
-            href="#form"
+            href={WHATSAPP_URL}
+            target="_blank"
+            rel="noopener noreferrer"
             className="hidden sm:inline-flex items-center gap-2 bg-brand text-paper-warm font-medium px-5 py-2.5 rounded-full hover:bg-brand-hover transition-colors text-[14px]"
           >
             <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">

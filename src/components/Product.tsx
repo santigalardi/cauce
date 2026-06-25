@@ -1,6 +1,7 @@
 /* "Cómo funciona" — chat real de WhatsApp + flujo a la derecha.
    Toda la conversación es ilustrativa, basada en el caso de uso del playbook
    (agendamiento de turno por WhatsApp). */
+import { WHATSAPP_URL } from "@/lib/links";
 
 const STEPS = [
   {
@@ -268,7 +269,9 @@ export default function Product() {
 
             {/* CTA inline al final */}
             <a
-              href="#form"
+              href={WHATSAPP_URL}
+              target="_blank"
+              rel="noopener noreferrer"
               className="mt-8 inline-flex items-center gap-2 font-mono text-[12px] uppercase tracking-[0.18em] text-ink font-bold hover:text-brand-yellow-deep transition-colors"
             >
               <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">

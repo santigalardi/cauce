@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { WHATSAPP_URL } from "@/lib/links";
 
 const DELIVERABLES = [
   "Tasa promedio de respuesta que vas a manejar",
@@ -105,9 +106,11 @@ export default function FormSection() {
               </ul>
             </div>
 
-            {/* CTA — abre el chat (link a #form, interceptado por DemoChatBot) */}
+            {/* CTA — abre WhatsApp directo con el bot de Cauce */}
             <a
-              href="#form"
+              href={WHATSAPP_URL}
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center gap-3 bg-brand-yellow text-ink font-bold px-8 py-5 rounded-full hover:bg-brand-yellow-hover transition-all duration-200 text-[16px] shadow-[0_10px_28px_-12px_rgba(31,21,23,0.5)] hover:-translate-y-0.5"
             >
               <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">

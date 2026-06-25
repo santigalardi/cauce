@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { WHATSAPP_URL } from "@/lib/links";
 
 const DIFFERENTIATORS = [
   {
@@ -113,7 +114,9 @@ export default function Differentiator() {
         {/* Footer — CTA centrado y grande */}
         <div className="mt-12 md:mt-16 pt-10 border-t border-white/10 flex justify-center">
           <a
-            href="#form"
+            href={WHATSAPP_URL}
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center gap-3 bg-brand-yellow text-ink font-bold px-8 py-4 rounded-full hover:bg-brand-yellow-hover transition-colors duration-200 text-[16px]"
           >
             <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
