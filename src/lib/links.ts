@@ -1,6 +1,6 @@
 // Punto de contacto único de Cauce: el bot de WhatsApp que atiende nuevos
 // clientes y agenda demos. Todos los CTA de la landing apuntan acá.
-export const WHATSAPP_NUMBER = "5492616756885"; // +54 9 2616 75-6885
+export const WHATSAPP_NUMBER = "5492617450587"; // +54 9 261 745-0587
 
 export const WHATSAPP_MESSAGE =
   "Hola! Me interesa conocer Cauce y agendar una demo para mi clínica.";
