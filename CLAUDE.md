@@ -174,11 +174,32 @@ Todas las ilustraciones son del **mismo sistema gráfico**: trazo a mano alzada,
 
 ## Stack y arquitectura
 
-- **Next.js 16.2.5** (App Router) — pre-render estático para SEO y previews de OG.
+- **Next.js 16.2.9** (App Router) — pre-render estático para SEO y previews de OG.
 - **React 19.2** + **TypeScript 5**.
 - **Tailwind CSS v4** — paleta y tokens en `src/app/globals.css` vía `@theme`. NO existe `tailwind.config.js` en v4.
 - **`next/font`** — Open Sans + Source Sans 3 auto-hospedadas.
-- **Deploy:** Vercel. Dominio objetivo `landing.prestobots.com` (CNAME → `cname.vercel-dns.com`).
+- **Deploy:** Cloudflare Workers vía **OpenNext** (`@opennextjs/cloudflare`). Worker `cauce`.
+
+### Deploy en Cloudflare Workers (OpenNext)
+
+El repo tiene config de Cloudflare versionada — NO dejar que el build server auto-genere nada:
+
+- **`wrangler.jsonc`** (commiteado) — `name: cauce` + binding `WORKER_SELF_REFERENCE → cauce`.
+  Ese binding tiene que apuntar al mismo nombre del Worker, si no falla con
+  `Service binding 'WORKER_SELF_REFERENCE' references Worker '...' which was not found`.
+- **`open-next.config.ts`** (commiteado) — `defineCloudflareConfig()`.
+- **`.open-next/`, `.dev.vars`, `.wrangler/`, `cloudflare-env.d.ts`** van en `.gitignore`.
+
+**Comandos en el dashboard de Cloudflare (Settings → Build):**
+
+- Build command: `npm run build`
+- Deploy command: **`npm run deploy`** (= `opennextjs-cloudflare build && opennextjs-cloudflare deploy`)
+- Non-production branch deploy: **`npm run preview`** (= `opennextjs-cloudflare build && opennextjs-cloudflare preview`)
+
+⚠️ NO usar `npx wrangler deploy` / `npx wrangler versions upload` como deploy command:
+sin el `opennextjs-cloudflare build` previo falla con `Could not find compiled Open Next config`.
+
+⚠️ `@opennextjs/cloudflare` exige `next >= 16.2.6` (por eso 16.2.9, no 16.2.5).
 
 ### Convenciones de código
 
