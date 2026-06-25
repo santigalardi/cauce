@@ -19,14 +19,14 @@ export default function Footer() {
               href="#top"
               onClick={scrollToTop}
               className="inline-block cursor-pointer"
-              aria-label="PrestoBots — volver arriba"
+              aria-label="Cauce — volver arriba"
             >
               <Image
-                src="/logos/prestobots.png"
-                alt="PrestoBots"
-                width={229}
-                height={70}
-                className="h-12 mb-5 brightness-0 invert"
+                src="/logos/cauce-logo-gold.png"
+                alt="Cauce"
+                width={460}
+                height={120}
+                className="h-9 mb-5"
                 style={{ width: "auto" }}
               />
             </a>
@@ -88,7 +88,7 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-white/10 mt-10 pt-6 flex flex-col md:flex-row justify-between gap-3 text-xs text-white/60">
-          <p>© {year} PrestoBots. Todos los derechos reservados.</p>
+          <p>© {year} Cauce. Todos los derechos reservados.</p>
           <p>Hecho en Argentina.</p>
         </div>
       </div>

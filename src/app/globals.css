@@ -1,37 +1,47 @@
 @import "tailwindcss";
 
-/* === TEMA: PrestoBots SALUD ===
-   Editorial-financial × marca PrestoBots.
-   Amarillo de marca con disciplina, negro como base, serif editorial. */
+/* === TEMA: CAUCE ===
+   Editorial-financial × marca Cauce.
+   Bordó (primary) como tinta de marca, dorado como acento, papel crema cálido.
+
+   Nota: conservamos los nombres de token heredados (brand-yellow, ink, paper…)
+   pero ahora apuntan a la paleta Cauce. brand-yellow* == acento dorado;
+   ink* == bordó/tinta de marca. */
 @theme {
-  /* MARCA */
-  --color-brand-yellow: #ffcc33;
-  --color-brand-yellow-hover: #f4bd1a;
-  --color-brand-yellow-soft: #fff4cc;
-  --color-brand-yellow-deep: #b8860b;
+  /* ACENTO — dorado Cauce (rol del antiguo "brand-yellow") */
+  --color-brand-yellow: #d4a55c;
+  --color-brand-yellow-hover: #c4914a;
+  --color-brand-yellow-soft: #f1e3cb;
+  --color-brand-yellow-deep: #b8851f;
 
-  /* TINTA — usamos un negro que no quema */
-  --color-ink: #0a0a0a;
-  --color-ink-soft: #1a1a1a;
-  --color-ink-mute: #2a2a2a;
+  /* MARCA — bordó Cauce (primary). Botón primario y acentos de tinta. */
+  --color-brand: #6e2e3a;
+  --color-brand-hover: #5c2630;
+  --color-brand-deep: #3d1a1f;
+  --color-brand-soft: #efe1e3;
 
-  /* PAPEL — variantes cálidas tipo dossier */
-  --color-paper: #fafaf7;
-  --color-paper-warm: #f6f3ec;
-  --color-paper-line: #e8e3d6;
-  --color-bg: #ffffff;
-  --color-surface: #fafaf7;
-  --color-surface-alt: #f3efe5;
+  /* TINTA — near-black cálido Cauce (base-content) para texto y headings */
+  --color-ink: #1f1517;
+  --color-ink-soft: #3d1a1f;
+  --color-ink-mute: #4a3a3d;
+
+  /* PAPEL — cremas Cauce (base-100/200/300) */
+  --color-paper: #fdfaf4;
+  --color-paper-warm: #f4ede0;
+  --color-paper-line: #e8dcc4;
+  --color-bg: #fdfaf4;
+  --color-surface: #f4ede0;
+  --color-surface-alt: #e8dcc4;
 
   /* TEXTO */
-  --color-heading: #0a0a0a;
-  --color-body: #3d3d3d;
-  --color-muted: #6b6b6b;
-  --color-faint: #9a9a9a;
+  --color-heading: #1f1517;
+  --color-body: #4a3a3d;
+  --color-muted: #7a6a6d;
+  --color-faint: #a89a9c;
 
-  /* ACENTO — verde dossier */
-  --color-success: #1d6b3d;
-  --color-success-soft: #d8e8dd;
+  /* ACENTO — verde Cauce (success) */
+  --color-success: #5c7a5c;
+  --color-success-soft: #dde6dd;
 
   /* TIPOGRAFÍA */
   --font-display: var(--font-display), system-ui, -apple-system, sans-serif;
@@ -76,7 +86,7 @@
 /* === COMPONENTES === */
 @layer components {
   .btn-primary {
-    @apply inline-flex items-center justify-center gap-2 bg-ink text-paper-warm font-medium px-6 py-3.5 rounded-full hover:bg-ink-soft transition-colors duration-200 text-[15px];
+    @apply inline-flex items-center justify-center gap-2 bg-brand text-paper-warm font-medium px-6 py-3.5 rounded-full hover:bg-brand-hover transition-colors duration-200 text-[15px];
   }
 
   .btn-yellow {
@@ -84,11 +94,11 @@
   }
 
   .btn-ghost {
-    @apply inline-flex items-center justify-center gap-2 text-ink font-medium hover:text-brand-yellow-deep transition-colors duration-200 text-[15px];
+    @apply inline-flex items-center justify-center gap-2 text-brand font-medium hover:text-brand-yellow-deep transition-colors duration-200 text-[15px];
   }
 
   .btn-outline {
-    @apply inline-flex items-center justify-center gap-2 border border-ink/15 text-ink font-medium px-6 py-3.5 rounded-full hover:border-ink hover:bg-ink hover:text-paper-warm transition-all duration-200 text-[15px];
+    @apply inline-flex items-center justify-center gap-2 border border-brand/20 text-brand font-medium px-6 py-3.5 rounded-full hover:border-brand hover:bg-brand hover:text-paper-warm transition-all duration-200 text-[15px];
   }
 
   .container-page {
@@ -217,6 +227,27 @@
   background: var(--color-paper-warm);
 }
 
+/* === IDENTIDAD CAUCE — motivo de "flujo" (cauce = curso de agua) === */
+
+/* Línea de flujo dorada que se dibuja sola en el load del hero.
+   Evoca el isotipo ∞ / el "cauce" que conecta el mensaje con el producto. */
+@keyframes flow-draw {
+  from { stroke-dashoffset: 1400; }
+  to { stroke-dashoffset: 0; }
+}
+.flow-line {
+  stroke-dasharray: 1400;
+  stroke-dashoffset: 1400;
+  animation: flow-draw 2.6s cubic-bezier(0.33, 0, 0.2, 1) 0.5s both;
+}
+/* Partícula que viaja por el cauce, sugiriendo movimiento continuo */
+@keyframes flow-drift {
+  0% { offset-distance: 0%; opacity: 0; }
+  12% { opacity: 1; }
+  88% { opacity: 1; }
+  100% { offset-distance: 100%; opacity: 0; }
+}
+
 /* Mockup tilt sutil que reacciona al hover */
 .mockup-frame {
   transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
@@ -263,7 +294,7 @@
 
 /* Subtle moving grid background for dark sections */
 .bg-dot-grid {
-  background-image: radial-gradient(circle at 1px 1px, rgba(255, 204, 51, 0.08) 1px, transparent 0);
+  background-image: radial-gradient(circle at 1px 1px, rgba(212, 165, 92, 0.1) 1px, transparent 0);
   background-size: 24px 24px;
 }
 
@@ -287,21 +318,51 @@
 
 /* Step highlight — el step que está "ocurriendo ahora mismo" */
 @keyframes step-active {
-  0%, 100% { background-color: rgba(255, 204, 51, 0.08); }
-  50% { background-color: rgba(255, 204, 51, 0.16); }
+  0%, 100% { background-color: rgba(212, 165, 92, 0.1); }
+  50% { background-color: rgba(212, 165, 92, 0.2); }
 }
 
-/* Hero chat — burbujas que aparecen secuencialmente en loop.
-   La animación dura 14s. Cada burbuja arranca con opacity:0, aparece en su
-   delay propio (clase .hero-bubble + animation-delay inline), se mantiene
-   visible, y al final del ciclo TODAS se desvanecen juntas para reiniciar
-   el chat limpio. */
-@keyframes hero-bubble {
-  0% { opacity: 0; transform: translateY(8px) scale(0.96); }
-  3%, 88% { opacity: 1; transform: translateY(0) scale(1); }
+/* Hero chat — burbujas que aparecen secuencialmente y se limpian en bloque.
+   Todas las burbujas comparten EL MISMO ciclo de 14s SIN animation-delay, así
+   que el reinicio del loop está sincronizado: aparecen escalonadas (cada una
+   con su propio keyframe hero-bubble-N que define el % de entrada), se
+   mantienen visibles, y al 88% TODAS se desvanecen juntas → el chat queda
+   vacío antes de volver a simular la conversación.
+
+   Los % de aparición van repartidos sobre el ciclo de 14s:
+     b1 ~0.4s → 3%   b2 ~1.6s → 11%   b3 ~2.4s → 17%
+     b4 ~4.4s → 31%  b5 ~5.6s → 40%
+   Todas comparten el mismo tramo final de fade-out (88%→93%). */
+@keyframes hero-bubble-1 {
+  0%, 1% { opacity: 0; transform: translateY(8px) scale(0.96); }
+  4%, 88% { opacity: 1; transform: translateY(0) scale(1); }
+  93%, 100% { opacity: 0; transform: translateY(-4px) scale(0.98); }
+}
+@keyframes hero-bubble-2 {
+  0%, 9% { opacity: 0; transform: translateY(8px) scale(0.96); }
+  12%, 88% { opacity: 1; transform: translateY(0) scale(1); }
+  93%, 100% { opacity: 0; transform: translateY(-4px) scale(0.98); }
+}
+@keyframes hero-bubble-3 {
+  0%, 15% { opacity: 0; transform: translateY(8px) scale(0.96); }
+  18%, 88% { opacity: 1; transform: translateY(0) scale(1); }
+  93%, 100% { opacity: 0; transform: translateY(-4px) scale(0.98); }
+}
+@keyframes hero-bubble-4 {
+  0%, 29% { opacity: 0; transform: translateY(8px) scale(0.96); }
+  32%, 88% { opacity: 1; transform: translateY(0) scale(1); }
+  93%, 100% { opacity: 0; transform: translateY(-4px) scale(0.98); }
+}
+@keyframes hero-bubble-5 {
+  0%, 38% { opacity: 0; transform: translateY(8px) scale(0.96); }
+  41%, 88% { opacity: 1; transform: translateY(0) scale(1); }
   93%, 100% { opacity: 0; transform: translateY(-4px) scale(0.98); }
 }
 .hero-bubble {
   opacity: 0;
-  animation: hero-bubble 14s cubic-bezier(0.2, 0.8, 0.2, 1) infinite both;
 }
+.hero-bubble-1 { animation: hero-bubble-1 14s cubic-bezier(0.2, 0.8, 0.2, 1) infinite both; }
+.hero-bubble-2 { animation: hero-bubble-2 14s cubic-bezier(0.2, 0.8, 0.2, 1) infinite both; }
+.hero-bubble-3 { animation: hero-bubble-3 14s cubic-bezier(0.2, 0.8, 0.2, 1) infinite both; }
+.hero-bubble-4 { animation: hero-bubble-4 14s cubic-bezier(0.2, 0.8, 0.2, 1) infinite both; }
+.hero-bubble-5 { animation: hero-bubble-5 14s cubic-bezier(0.2, 0.8, 0.2, 1) infinite both; }

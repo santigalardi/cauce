@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 /* Datos validados del playbook DigitalYa (CLAUDE.md). NO inventar números. */
 const TICKER_ITEMS = [
   "200.000 chats procesados este mes",
@@ -7,38 +9,36 @@ const TICKER_ITEMS = [
   "6 años operando en clínicas argentinas",
 ];
 
-/* Chat ilustrativo del hero — sincronizado con la animación de 14s.
-   delay = segundos desde el inicio del loop en que aparece la burbuja. */
+/* Chat ilustrativo del hero — la animación está en globals.css.
+   El orden de este array define el escalonado de aparición: la burbuja N usa
+   la clase .hero-bubble-N (keyframe propio con su % de entrada en el ciclo de
+   14s). Todas se desvanecen juntas al final → el chat se limpia antes de
+   re-simular. Si agregás/quitás mensajes, ajustá los keyframes hero-bubble-N. */
 const HERO_CHAT = [
   {
     side: "user" as const,
     text: "Hola! Necesito turno con el Dr. Pereyra.",
     time: "10:42",
-    delay: 0.4,
   },
   {
     side: "bot" as const,
     text: "Hola María 👋 Tengo estos horarios disponibles esta semana:",
     time: "10:42",
-    delay: 1.6,
   },
   {
     side: "bot" as const,
     text: "• Mié 12 nov · 15:00\n• Jue 13 nov · 11:15",
     time: "10:42",
-    delay: 2.4,
   },
   {
     side: "user" as const,
     text: "El miércoles a las 15 perfecto 🙌",
     time: "10:43",
-    delay: 4.4,
   },
   {
     side: "bot" as const,
     text: "Listo ✅ Turno reservado para el mié 12/11 · 15:00. Te recuerdo 24 hs antes.",
     time: "10:43",
-    delay: 5.6,
   },
 ];
 
@@ -73,55 +73,126 @@ export default function Hero() {
       </div>
 
       {/* Contenido principal del hero */}
-      <div className="container-page relative pt-14 pb-20 md:pt-24 md:pb-32">
-        <div className="grid lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+      <div className="relative pt-14 pb-20 md:pt-12 md:pb-32">
+        {/* Wash cálido — degradé sutil del crema hacia brand-soft */}
+        <div
+          className="absolute inset-0 -z-10 pointer-events-none"
+          style={{
+            background:
+              "radial-gradient(120% 90% at 78% 30%, var(--color-brand-soft) 0%, transparent 55%)",
+            opacity: 0.7,
+          }}
+        />
+        {/* Isotipo ∞ de Cauce — marca de agua, mejor anclada detrás del teléfono */}
+        <Image
+          src="/logos/cauce-iso-gold.png"
+          alt=""
+          aria-hidden="true"
+          width={683}
+          height={314}
+          priority
+          className="hidden lg:block absolute -z-10 right-[-10%] top-[38%] -translate-y-1/2 w-[58%] max-w-[820px] h-auto opacity-[0.13] pointer-events-none select-none"
+        />
+
+        {/* Línea de flujo (cauce) — se dibuja sola y conecta el mensaje con el producto */}
+        <svg
+          aria-hidden="true"
+          className="hidden lg:block absolute inset-0 w-full h-full -z-10 pointer-events-none overflow-visible"
+          preserveAspectRatio="none"
+          viewBox="0 0 1200 800"
+          fill="none"
+        >
+          <defs>
+            <linearGradient id="flow-grad" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stopColor="var(--color-brand-yellow)" stopOpacity="0" />
+              <stop offset="22%" stopColor="var(--color-brand-yellow)" stopOpacity="0.85" />
+              <stop offset="78%" stopColor="var(--color-brand-yellow)" stopOpacity="0.85" />
+              <stop offset="100%" stopColor="var(--color-brand-yellow)" stopOpacity="0.2" />
+            </linearGradient>
+            <filter id="flow-glow" x="-20%" y="-40%" width="140%" height="180%">
+              <feGaussianBlur stdDeviation="3" result="b" />
+              <feMerge>
+                <feMergeNode in="b" />
+                <feMergeNode in="SourceGraphic" />
+              </feMerge>
+            </filter>
+          </defs>
+          {/* Cauce de fondo — trazo ancho difuso (el "agua") */}
+          <path
+            d="M -40 560 C 320 560, 360 300, 660 300 S 980 360, 1240 220"
+            stroke="var(--color-brand-yellow)"
+            strokeWidth="14"
+            strokeLinecap="round"
+            className="flow-line"
+            opacity="0.07"
+            style={{ filter: "blur(4px)" }}
+          />
+          {/* Cauce principal — trazo nítido con degradé y glow */}
+          <path
+            id="cauce-flow"
+            d="M -40 560 C 320 560, 360 300, 660 300 S 980 360, 1240 220"
+            stroke="url(#flow-grad)"
+            strokeWidth="2.5"
+            strokeLinecap="round"
+            className="flow-line"
+            filter="url(#flow-glow)"
+          />
+          {/* Partícula de luz que recorre el cauce */}
+          <circle r="5" fill="var(--color-brand-yellow)" filter="url(#flow-glow)">
+            <animateMotion dur="7s" repeatCount="indefinite" rotate="auto" keyPoints="0;1" keyTimes="0;1" calcMode="linear">
+              <mpath href="#cauce-flow" />
+            </animateMotion>
+            <animate attributeName="opacity" dur="7s" repeatCount="indefinite" values="0;1;1;0" keyTimes="0;0.1;0.9;1" />
+          </circle>
+        </svg>
+
+        <div className="container-page grid lg:grid-cols-12 gap-10 lg:gap-12 items-start">
           {/* Columna izquierda — titular editorial */}
           <div className="lg:col-span-7">
-            <p className="label-mono mb-6 rise rise-1">
+            <p className="label-mono mb-5 rise rise-1 flex flex-wrap items-center gap-x-2.5 gap-y-1">
+              {/* Mini-isotipo ∞ de Cauce como bullet de marca */}
+              <svg width="20" height="10" viewBox="0 0 683 314" fill="none" aria-hidden="true" className="shrink-0">
+                <path
+                  d="M512 27c-86 0-140 76-170 130-30 54-72 130-170 130-64 0-115-52-115-130S122 27 172 27c98 0 140 76 170 130 30 54 84 130 170 130 64 0 115-52 115-130S562 27 512 27Z"
+                  stroke="var(--color-brand-yellow)"
+                  strokeWidth="34"
+                  strokeLinecap="round"
+                />
+              </svg>
               <span className="text-ink font-bold">Vertical Salud</span>
-              <span className="text-faint mx-2">·</span>
-              <span>Para directores y gerentes operativos</span>
+              <span className="text-faint hidden sm:inline">·</span>
+              <span className="w-full sm:w-auto">Para directores y gerentes operativos</span>
             </p>
 
             <h1
-              className="text-[44px] sm:text-[56px] lg:text-[72px] font-display leading-[1.02] tracking-[-0.03em] text-heading mb-8 rise rise-2"
+              className="text-[44px] sm:text-[56px] lg:text-[64px] font-display leading-[1.03] tracking-[-0.03em] text-heading mb-6 rise rise-2"
               style={{ fontWeight: 600 }}
             >
               Recuperá la
               <br />
-              facturación que tu
+              <span className="text-brand">facturación</span> que tu
               <br />
-              <span className="highlight-marker">agenda pierde</span>
+              <span className="text-brand-deep">agenda pierde</span>
               <br />
               <span className="text-muted" style={{ fontWeight: 400 }}>
                 en silencio.
               </span>
             </h1>
 
-            <p className="text-[17px] md:text-[19px] text-body leading-[1.55] max-w-[560px] mb-10 rise rise-3">
+            <p className="text-[17px] md:text-[18px] text-body leading-[1.5] max-w-[560px] mb-7 rise rise-3">
               Bot de WhatsApp integrado nativamente a tu HIS. Automatiza el
               ciclo completo del turno, audita conversaciones, conocé a tu cliente y
               eliminá la fuga de ingresos que tus planillas no pueden ver.
             </p>
 
-            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mb-12 rise rise-4">
-              <a href="#form" className="btn-yellow group">
-                Agendar demo
-                <svg
-                  width="16"
-                  height="16"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className="transition-transform group-hover:translate-x-1"
-                >
-                  <path d="M5 12h14M13 5l7 7-7 7" />
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 mb-7 rise rise-4">
+              <a href="#form" className="btn-yellow group w-full sm:w-auto">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
                 </svg>
+                Hablar con el bot
               </a>
-              <a href="#pilares" className="btn-ghost">
+              <a href="#pilares" className="btn-ghost w-full sm:w-auto">
                 Ver beneficios
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <path d="M12 5v14M5 12l7 7 7-7" />
@@ -131,7 +202,7 @@ export default function Hero() {
 
             <a
               href="#form"
-              className="inline-flex items-center gap-2 text-[13px] text-muted hover:text-ink transition-colors mb-10 rise rise-4"
+              className="inline-flex items-center gap-2 text-[13px] text-muted hover:text-ink transition-colors mt-2 mb-10 rise rise-4"
             >
               <span className="w-1.5 h-1.5 rounded-full bg-brand-yellow" />
               Enterate si estamos integrados a tu HIS
@@ -143,7 +214,7 @@ export default function Hero() {
             {/* Mini-firma estilo editorial */}
             <div className="flex items-center gap-3 text-[13px] text-muted rise rise-5">
               <div className="flex -space-x-2">
-                {["#FFCC33", "#0a0a0a", "#1d6b3d", "#f6f3ec"].map((color, i) => (
+                {["#D4A55C", "#6E2E3A", "#5C7A5C", "#f4ede0"].map((color, i) => (
                   <span
                     key={i}
                     className="w-7 h-7 rounded-full border-2 border-bg"
@@ -153,27 +224,27 @@ export default function Hero() {
               </div>
               <span>
                 <strong className="text-ink font-semibold">+40 clínicas</strong>{" "}
-                ya operan con PrestoBots
+                ya operan con Cauce
               </span>
             </div>
           </div>
 
-          {/* Columna derecha — iPhone 17 Pro Max con WhatsApp en vivo */}
-          <div className="lg:col-span-5 relative rise rise-3 flex justify-center">
-            {/* Glow amarillo difuso de fondo */}
-            <div
-              className="absolute -inset-6 -z-10 rounded-[3rem] opacity-50 blur-3xl pointer-events-none"
-              style={{
-                background:
-                  "radial-gradient(circle at 30% 20%, rgba(255,204,51,0.28), transparent 60%)",
-              }}
-            />
-
+          {/* Columna derecha — iPhone limpio. En mobile, margen extra para que
+              quede debajo del fold del primer viewport y aparezca al scrollear. */}
+          <div className="lg:col-span-5 relative rise rise-3 flex justify-center mt-16 lg:mt-0">
             {/* iPhone 17 Pro Max — chasis grafito, Dynamic Island */}
-            <div className="relative" style={{ width: 320 }}>
+            <div className="relative w-[280px]">
+              {/* Sombra cálida única que apoya el teléfono en el fondo */}
+              <div
+                className="absolute -inset-x-8 bottom-2 top-16 -z-10 pointer-events-none opacity-70 blur-2xl"
+                style={{
+                  background:
+                    "radial-gradient(60% 55% at 50% 60%, rgba(61,26,31,0.18), transparent 70%)",
+                }}
+              />
               {/* Marco exterior — grafito profundo con sutil brillo lateral */}
               <div
-                className="relative rounded-[52px] p-[2px] shadow-[0_40px_90px_-30px_rgba(10,10,10,0.55),0_0_0_1px_rgba(0,0,0,0.08)]"
+                className="relative rounded-[52px] p-[2px] shadow-[0_40px_90px_-30px_rgba(61,26,31,0.55),0_8px_24px_rgba(110,46,58,0.18),0_0_0_1px_rgba(0,0,0,0.08)]"
                 style={{
                   background:
                     "linear-gradient(135deg, #2a2a2c 0%, #1a1a1c 25%, #0e0e10 50%, #1a1a1c 75%, #2a2a2c 100%)",
@@ -220,15 +291,15 @@ export default function Hero() {
                         <path d="M8 1L2 8l6 7" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
                       </svg>
                       <div className="w-9 h-9 rounded-full bg-brand-yellow flex items-center justify-center text-ink font-bold text-[12px] shrink-0">
-                        PB
+                        CM
                       </div>
                       <div className="flex-1 min-w-0">
                         <p className="font-semibold text-[13.5px] leading-tight truncate">
-                          Centro Médico Norte
+                          Centro Médico
                         </p>
                         <p className="text-[10.5px] text-white/75 flex items-center gap-1.5 mt-0.5">
                           <span className="w-1.5 h-1.5 rounded-full bg-green-400 inline-block" />
-                          en línea · responde al instante
+                          en línea
                         </p>
                       </div>
                     </div>
@@ -245,10 +316,9 @@ export default function Hero() {
                       {HERO_CHAT.map((msg, i) => (
                         <div
                           key={i}
-                          className={`flex hero-bubble ${
+                          className={`flex hero-bubble hero-bubble-${i + 1} ${
                             msg.side === "user" ? "justify-end" : "justify-start"
                           }`}
-                          style={{ animationDelay: `${msg.delay}s` }}
                         >
                           <div
                             className={`max-w-[80%] px-2.5 py-1.5 rounded-lg text-[12.5px] leading-[1.35] shadow-sm ${
@@ -291,6 +361,7 @@ export default function Hero() {
                 </div>
               </div>
             </div>
+            {/* /iPhone */}
           </div>
         </div>
       </div>

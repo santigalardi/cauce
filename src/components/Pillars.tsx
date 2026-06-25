@@ -13,7 +13,7 @@ const PILLARS = [
     icon: "/icons/experience.png",
     title: "Scoring de pacientes",
     description:
-      "Calificamos a cada paciente con datos propios de PrestoBots, combinados con la asistencia real de tu HIS. Tu equipo prioriza a quien tiene mayor probabilidad de presentarse.",
+      "Calificamos a cada paciente con datos propios de Cauce, combinados con la asistencia real de tu HIS. Tu equipo prioriza a quien tiene mayor probabilidad de presentarse.",
   },
   {
     n: "03",
@@ -66,7 +66,7 @@ export default function Pillars() {
           <div className="lg:col-span-5 lg:pt-4">
             <p className="text-[16px] md:text-[17px] text-body leading-[1.65] max-w-md">
               Cuatro beneficios que se activan juntos el día que conectás
-              PrestoBots a tu HIS. No los elegís por separado, no se compran
+              Cauce a tu HIS. No los elegís por separado, no se compran
               por módulo: vienen integrados porque así se sostiene la
               rentabilidad.
             </p>
@@ -116,7 +116,7 @@ export default function Pillars() {
           ))}
 
           {/* 6ª celda — cierre conceptual */}
-          <article className="relative border-r border-b border-ink/10 p-7 md:p-9 bg-ink text-paper-warm flex flex-col justify-between">
+          <article className="relative border-r border-b border-ink/10 p-7 md:p-9 bg-brand text-paper-warm flex flex-col justify-between">
             <div>
               <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-brand-yellow font-bold mb-7 block">
                 = Sistema completo

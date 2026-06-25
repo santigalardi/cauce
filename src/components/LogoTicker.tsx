@@ -19,7 +19,7 @@ export default function LogoTicker() {
         <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted shrink-0 md:max-w-[140px] md:border-r md:border-paper-line md:pr-10">
           Confían en
           <br className="hidden md:block" />
-          <span className="text-ink font-bold">PrestoBots Salud</span>
+          <span className="text-brand font-bold">Cauce</span>
         </span>
 
         <div className="flex-1 overflow-hidden relative">

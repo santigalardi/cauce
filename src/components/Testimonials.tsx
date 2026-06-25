@@ -11,7 +11,7 @@ const TESTIMONIALS = [
     person: "Bianca Discépolo",
     role: "Gerencia Adm. y Financiera",
     company: "ASISTIR Servicios Médicos",
-    question: "¿Por qué decidieron contratar PrestoBots?",
+    question: "¿Por qué decidieron contratar Cauce?",
   },
   {
     id: "6EO2XaKLlt4",
@@ -32,14 +32,14 @@ const TESTIMONIALS = [
     person: "Ramón Cuevas",
     role: "Gerente de Sistemas",
     company: "Sanatorio Bernal",
-    question: "¿Cómo evalúan la experiencia con PrestoBots?",
+    question: "¿Cómo evalúan la experiencia con Cauce?",
   },
   {
     id: "X2GfJxVA_Eo",
     person: "Nadine Moreno",
     role: "Jefa de Atención al Paciente",
     company: "Nobis Center",
-    question: "Su experiencia con PrestoBots",
+    question: "Su experiencia con Cauce",
   },
 ];
 
@@ -104,7 +104,7 @@ export default function Testimonials() {
         >
           Lo que dicen quienes
           <br />
-          <span className="text-muted">ya gestionan con PrestoBots.</span>
+          <span className="text-muted">ya gestionan con Cauce.</span>
         </h2>
 
         {/* Grid de shorts */}
@@ -238,7 +238,7 @@ export default function Testimonials() {
           >
             <iframe
               src={`https://www.youtube.com/embed/${active}?autoplay=1&rel=0&modestbranding=1`}
-              title="Testimonio PrestoBots"
+              title="Testimonio Cauce"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
               className="absolute inset-0 w-full h-full"

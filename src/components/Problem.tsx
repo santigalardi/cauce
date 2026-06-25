@@ -44,13 +44,13 @@ const PAINS = [
     label: "PROACTIVIDAD",
     title: "El paciente que ya conocés cuesta 5× menos que uno nuevo.",
     description:
-      "Mientras gastás en captar pacientes nuevos, los que ya tenés se olvidan de su control anual. Con PrestoBots reactivás tu base con campañas de recordatorio por WhatsApp, sin un peso de publicidad.",
+      "Mientras gastás en captar pacientes nuevos, los que ya tenés se olvidan de su control anual. Con Cauce reactivás tu base con campañas de recordatorio por WhatsApp, sin un peso de publicidad.",
   },
 ];
 
 export default function Problem() {
   return (
-    <section className="relative bg-ink text-paper-warm overflow-hidden">
+    <section className="relative bg-brand-deep text-paper-warm overflow-hidden">
       {/* Grid de puntos amarillos sutil de fondo */}
       <div className="absolute inset-0 bg-dot-grid pointer-events-none" />
 
@@ -67,7 +67,7 @@ export default function Problem() {
             <span className="relative flex items-center justify-center w-3 h-3">
               <span className="absolute w-3 h-3 rounded-full bg-brand-yellow/30 live-ring" />
               <span className="absolute w-3 h-3 rounded-full bg-brand-yellow/30 live-ring-delayed" />
-              <span className="relative w-1.5 h-1.5 rounded-full bg-brand-yellow shadow-[0_0_8px_rgba(255,204,51,0.8)]" />
+              <span className="relative w-1.5 h-1.5 rounded-full bg-brand-yellow shadow-[0_0_8px_rgba(212,165,92,0.8)]" />
             </span>
             <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-brand-yellow font-bold">
               Diagnóstico
@@ -207,7 +207,7 @@ export default function Problem() {
               className="relative rounded-2xl border border-brand-yellow/40 p-5 flex flex-col justify-between min-h-[140px] overflow-hidden"
               style={{
                 background:
-                  "linear-gradient(135deg, rgba(255,204,51,0.18) 0%, rgba(255,204,51,0.05) 100%)",
+                  "linear-gradient(135deg, rgba(212,165,92,0.18) 0%, rgba(212,165,92,0.05) 100%)",
               }}
             >
               <span className="absolute -inset-1 -z-10 opacity-40 blur-2xl pointer-events-none"
@@ -267,7 +267,7 @@ export default function Problem() {
             </div>
             <div className="flex items-center gap-5 text-[11px] font-mono uppercase tracking-[0.18em]">
               <span className="flex items-center gap-2 text-white/60">
-                <span className="w-3 h-3 rounded-sm bg-brand-yellow shadow-[0_0_10px_rgba(255,204,51,0.6)]" />
+                <span className="w-3 h-3 rounded-sm bg-brand-yellow shadow-[0_0_10px_rgba(212,165,92,0.6)]" />
                 Ausentismo
               </span>
               <span className="flex items-center gap-2 text-white/60">
@@ -311,8 +311,8 @@ export default function Problem() {
                 <defs>
                   {/* Banda 20-35% sombreada — la zona crítica */}
                   <linearGradient id="bandFill" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stopColor="#ffcc33" stopOpacity="0.06" />
-                    <stop offset="100%" stopColor="#ffcc33" stopOpacity="0" />
+                    <stop offset="0%" stopColor="#d4a55c" stopOpacity="0.06" />
+                    <stop offset="100%" stopColor="#d4a55c" stopOpacity="0" />
                   </linearGradient>
                 </defs>
 
@@ -358,7 +358,7 @@ export default function Problem() {
                   const isPeak = i === peakIdx;
                   const isAboveAvg = mo.lost >= avg;
                   const fill = isPeak
-                    ? "#ffcc33"
+                    ? "#d4a55c"
                     : isAboveAvg
                     ? "rgba(255,255,255,0.55)"
                     : "rgba(255,255,255,0.22)";
@@ -384,7 +384,7 @@ export default function Problem() {
                         textAnchor="middle"
                         fontSize="10"
                         fontFamily="var(--font-mono)"
-                        fill={isPeak ? "#ffcc33" : "rgba(255,255,255,0.45)"}
+                        fill={isPeak ? "#d4a55c" : "rgba(255,255,255,0.45)"}
                         fontWeight={isPeak ? "700" : "400"}
                       >
                         {mo.lost}
@@ -397,7 +397,7 @@ export default function Problem() {
                         fontSize="10"
                         fontFamily="var(--font-mono)"
                         fill={
-                          isPeak ? "rgba(255,204,51,0.85)" : "rgba(255,255,255,0.35)"
+                          isPeak ? "rgba(212,165,92,0.85)" : "rgba(255,255,255,0.35)"
                         }
                         letterSpacing="0.5"
                       >
@@ -413,7 +413,7 @@ export default function Problem() {
                   x2={W - PAD_R}
                   y1={yFor(avg)}
                   y2={yFor(avg)}
-                  stroke="#ffcc33"
+                  stroke="#d4a55c"
                   strokeWidth="1"
                   strokeDasharray="2 3"
                   opacity="0.7"
@@ -425,7 +425,7 @@ export default function Problem() {
                   width={92}
                   height={16}
                   rx="3"
-                  fill="#ffcc33"
+                  fill="#d4a55c"
                 />
                 <text
                   x={W - PAD_R - 50}
@@ -460,7 +460,7 @@ export default function Problem() {
           {PAINS.map((pain) => (
             <article
               key={pain.n}
-              className="bg-ink p-7 md:p-8 hover:bg-white/[0.03] transition-colors duration-200"
+              className="bg-brand-deep p-7 md:p-8 hover:bg-white/[0.03] transition-colors duration-200"
             >
               <div className="flex items-baseline justify-between mb-6">
                 <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-brand-yellow font-bold">
