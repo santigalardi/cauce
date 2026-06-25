@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Instrument_Sans, IBM_Plex_Sans, JetBrains_Mono } from "next/font/google";
 import Script from "next/script";
+import WhatsAppFab from "@/components/WhatsAppFab";
 import "./globals.css";
 
 const GTM_ID = "GTM-P4RDF3J4";
@@ -30,7 +31,7 @@ const plexMono = JetBrains_Mono({
   display: "swap",
 });
 
-const SITE_URL = "https://landing.prestobots.com";
+const SITE_URL = "https://caucebot.com";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -41,6 +42,9 @@ export const metadata: Metadata = {
   description:
     "Bot de WhatsApp integrado nativamente a tu HIS. +1M turnos gestionados, 80% autogestión, +200K chats/mes. Recuperá la facturación que tu agenda pierde en silencio.",
   applicationName: "Cauce",
+  alternates: {
+    canonical: "/",
+  },
   keywords: [
     "agenda médica",
     "WhatsApp clínica",
@@ -84,17 +88,47 @@ export const viewport: Viewport = {
   themeColor: "#6E2E3A",
 };
 
-import WhatsAppFab from "@/components/WhatsAppFab";
+// Datos estructurados (schema.org). Solo datos validados del CLAUDE.md.
+const JSON_LD = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": `${SITE_URL}/#organization`,
+      name: "Cauce",
+      url: SITE_URL,
+      logo: `${SITE_URL}/logos/cauce-logo.png`,
+      description:
+        "Bot de WhatsApp con IA que automatiza el ciclo completo del turno (agendamiento, confirmación, recordatorio, cancelación y re-agendamiento) para clínicas y consultorios, integrado nativamente al HIS.",
+      areaServed: "AR",
+    },
+    {
+      "@type": "SoftwareApplication",
+      name: "Cauce",
+      applicationCategory: "BusinessApplication",
+      operatingSystem: "Web, WhatsApp",
+      url: SITE_URL,
+      provider: { "@id": `${SITE_URL}/#organization` },
+      description:
+        "Infraestructura de rentabilidad para clínicas: automatiza la agenda por WhatsApp, reduce el ausentismo y recupera facturación, con integración nativa al HIS.",
+    },
+  ],
+};
 
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html
-      lang="es"
+      lang="es-AR"
       className={`${instrumentSans.variable} ${plexSans.variable} ${plexMono.variable} h-full`}
     >
       <head>
+        {/* Datos estructurados schema.org */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(JSON_LD) }}
+        />
         {/* Google Tag Manager */}
         <Script id="gtm-init" strategy="afterInteractive">
           {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
