@@ -5,8 +5,8 @@ import WhatsAppLink from "@/components/WhatsAppLink";
 
 const NAV_LINKS = [
   { href: "#pilares", label: "Beneficios" },
-  { href: "#producto", label: "Producto" },
   { href: "#testimonios", label: "Testimonios" },
+  { href: "#producto", label: "Producto" },
 ];
 
 function scrollToTop(e: React.MouseEvent<HTMLAnchorElement>) {
