@@ -1,23 +1,30 @@
 import { ImageResponse } from "next/og";
-import { readFileSync } from "node:fs";
-import { join } from "node:path";
 
 // Imagen Open Graph (1200x630) generada con el branding de Cauce.
 // Se usa al compartir el sitio en WhatsApp, redes y buscadores.
-// Estática: se genera en build (la imagen no cambia entre requests).
 export const alt =
   "Cauce — Infraestructura de rentabilidad para clínicas. Bot de WhatsApp integrado a tu HIS.";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
-// El logo se lee del filesystem en build y se inyecta como data URL:
-// next/og no resuelve rutas de /public por sí solo.
-const logoData = readFileSync(
-  join(process.cwd(), "public/logos/cauce-logo.png"),
-).toString("base64");
-const logoSrc = `data:image/png;base64,${logoData}`;
+// El logo se carga DENTRO de la función (no en module-scope) y vía fetch sobre
+// un asset bundleado: readFileSync no existe en el runtime de Cloudflare Workers
+// y, si falla en la evaluación del módulo, tira abajo el resto del bundle.
+async function loadLogo(): Promise<string | null> {
+  try {
+    const data = await fetch(
+      new URL("../../public/logos/cauce-logo.png", import.meta.url),
+    ).then((res) => res.arrayBuffer());
+    const base64 = Buffer.from(data).toString("base64");
+    return `data:image/png;base64,${base64}`;
+  } catch {
+    return null; // si no se puede cargar, caemos al wordmark de texto
+  }
+}
 
-export default function OpengraphImage() {
+export default async function OpengraphImage() {
+  const logoSrc = await loadLogo();
+
   return new ImageResponse(
     (
       <div
@@ -32,9 +39,22 @@ export default function OpengraphImage() {
           fontFamily: "sans-serif",
         }}
       >
-        {/* Marca — logotipo Cauce */}
+        {/* Marca — logotipo Cauce (con fallback a wordmark si no carga) */}
         <div style={{ display: "flex", alignItems: "center" }}>
-          <img src={logoSrc} alt="Cauce" height={64} width={354} />
+          {logoSrc ? (
+            <img src={logoSrc} alt="Cauce" height={64} width={354} />
+          ) : (
+            <div
+              style={{
+                fontSize: 40,
+                fontWeight: 700,
+                color: "#6E2E3A",
+                letterSpacing: "-0.02em",
+              }}
+            >
+              cauce.
+            </div>
+          )}
         </div>
 
         {/* Titular */}
