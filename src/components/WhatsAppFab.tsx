@@ -1,9 +1,10 @@
 "use client";
 
-import { WHATSAPP_URL, trackWhatsAppClick } from "@/lib/links";
+import { WHATSAPP_URL, buildWhatsAppUrl, trackWhatsAppClick } from "@/lib/links";
 
 /* Botón flotante de WhatsApp — punto de contacto directo con el bot de Cauce.
-   Reemplaza al antiguo widget de chat falso: ahora abre WhatsApp real. */
+   Reemplaza al antiguo widget de chat falso: ahora abre WhatsApp real.
+   El href se reescribe en el click con el GCLID si el visitante vino de un anuncio. */
 export default function WhatsAppFab() {
   return (
     <a
@@ -11,7 +12,10 @@ export default function WhatsAppFab() {
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Hablar con Cauce por WhatsApp"
-      onClick={() => trackWhatsAppClick("fab")}
+      onClick={(e) => {
+        e.currentTarget.href = buildWhatsAppUrl();
+        trackWhatsAppClick("fab");
+      }}
       className="fixed z-50 bottom-5 right-5 md:bottom-6 md:right-6 group flex items-center justify-center w-16 h-16 rounded-full bg-[#25D366] text-white hover:bg-[#1ebe5d] hover:scale-105 shadow-[0_12px_32px_-8px_rgba(37,211,102,0.55),0_4px_12px_rgba(31,21,23,0.18)] transition-all duration-300"
     >
       <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
