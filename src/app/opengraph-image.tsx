@@ -51,9 +51,9 @@ export default function OpengraphImage() {
               maxWidth: 920,
             }}
           >
-            Recuperá la&nbsp;
-            <span style={{ color: "#6E2E3A" }}>facturación</span>
-            &nbsp;que tu agenda pierde en silencio.
+            <span>Recuperá la&nbsp;</span>
+            <span style={{ color: "#6E2E3A" }}>facturación&nbsp;</span>
+            <span>que tu agenda pierde en silencio.</span>
           </div>
           <div style={{ fontSize: 30, color: "#444444", maxWidth: 880 }}>
             Bot de WhatsApp integrado nativamente a tu HIS.
