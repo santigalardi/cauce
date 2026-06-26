@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     template: "%s | Cauce",
   },
   description:
-    "Bot de WhatsApp integrado nativamente a tu HIS. +1M turnos gestionados, 80% autogestión, +200K chats/mes. Recuperá la facturación que tu agenda pierde en silencio.",
+    "Bot de WhatsApp integrado nativamente a tu HIS. +1M turnos gestionados, 80% autogestión, +3M chats/mes. Recuperá la facturación que tu agenda pierde en silencio.",
   applicationName: "Cauce",
   alternates: {
     canonical: "/",

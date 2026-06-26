@@ -3,7 +3,7 @@ import WhatsAppLink from "@/components/WhatsAppLink";
 
 /* Datos validados del playbook DigitalYa (CLAUDE.md). NO inventar números. */
 const TICKER_ITEMS = [
-  "200.000 chats procesados este mes",
+  "3.000.000 chats procesados este mes",
   "+1M turnos gestionados desde 2020",
   "80% de autogestión real",
   "Integración nativa con tu HIS",
@@ -46,7 +46,7 @@ const HERO_CHAT = [
 /* KPIs que aparecen como "dossier strip" debajo del hero */
 const KPIS = [
   { number: "1.000.000+", label: "turnos\ngestionados", caption: "DESDE 2020" },
-  { number: "200.000+", label: "chats\nprocesados/mes", caption: "VOLUMEN ACTUAL" },
+  { number: "3.000.000+", label: "chats\nprocesados/mes", caption: "VOLUMEN ACTUAL" },
   { number: "80%", label: "autogestión\nsin humanos", caption: "TASA REAL" },
   { number: "6", label: "años en\nsalud B2B", caption: "EXPERIENCIA" },
 ];

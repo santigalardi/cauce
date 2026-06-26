@@ -88,7 +88,7 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-white/10 mt-10 pt-6 flex flex-col md:flex-row justify-between gap-3 text-xs text-white/60">
-          <p>© {year} Cauce. Todos los derechos reservados.</p>
+          <p>© {year} Cauce. Todos los derechos reservados. Powered by: Prestobots S.A</p>
           <p>Hecho en Argentina.</p>
         </div>
       </div>

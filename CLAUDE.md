@@ -26,7 +26,7 @@ PrestoBots SALUD es un **bot de WhatsApp con IA** que automatiza el ciclo comple
 Estos son los **únicos números** que pueden aparecer en la landing sin nuevo OK del cliente:
 
 - **+1.000.000 de turnos gestionados**
-- **+200.000 chats procesados al mes**
+- **+3.000.000 chats procesados al mes** (actualizado jun-2026; antes el Playbook registraba +200.000)
 - **80% de autogestión** (% de turnos que el bot resuelve sin intervención humana)
 - **6 años de experiencia** en salud
 - **+40 clínicas** activas operando con PrestoBots (clientes reales, no mercado direccionable)

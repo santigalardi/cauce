@@ -56,7 +56,7 @@ export default function OpengraphImage() {
           {[
             ["+1M", "turnos gestionados"],
             ["80%", "de autogestión"],
-            ["+200K", "chats / mes"],
+            ["+3M", "chats / mes"],
           ].map(([n, label]) => (
             <div key={label} style={{ display: "flex", flexDirection: "column" }}>
               <div style={{ fontSize: 44, fontWeight: 700, color: "#6E2E3A" }}>
