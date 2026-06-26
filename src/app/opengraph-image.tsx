@@ -1,4 +1,6 @@
 import { ImageResponse } from "next/og";
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
 
 // Imagen Open Graph (1200x630) generada con el branding de Cauce.
 // Se usa al compartir el sitio en WhatsApp, redes y buscadores.
@@ -7,6 +9,13 @@ export const alt =
   "Cauce — Infraestructura de rentabilidad para clínicas. Bot de WhatsApp integrado a tu HIS.";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
+
+// El logo se lee del filesystem en build y se inyecta como data URL:
+// next/og no resuelve rutas de /public por sí solo.
+const logoData = readFileSync(
+  join(process.cwd(), "public/logos/cauce-logo.png"),
+).toString("base64");
+const logoSrc = `data:image/png;base64,${logoData}`;
 
 export default function OpengraphImage() {
   return new ImageResponse(
@@ -23,26 +32,9 @@ export default function OpengraphImage() {
           fontFamily: "sans-serif",
         }}
       >
-        {/* Marca */}
-        <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
-          <div
-            style={{
-              width: 18,
-              height: 18,
-              borderRadius: 9999,
-              background: "#6E2E3A",
-            }}
-          />
-          <div
-            style={{
-              fontSize: 34,
-              fontWeight: 700,
-              color: "#1A1A1A",
-              letterSpacing: "-0.02em",
-            }}
-          >
-            Cauce
-          </div>
+        {/* Marca — logotipo Cauce */}
+        <div style={{ display: "flex", alignItems: "center" }}>
+          <img src={logoSrc} alt="Cauce" height={64} width={354} />
         </div>
 
         {/* Titular */}
