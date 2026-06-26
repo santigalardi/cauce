@@ -1,4 +1,5 @@
 import { ImageResponse } from "next/og";
+import { CAUCE_LOGO_DATA_URL } from "./cauce-logo-base64";
 
 // Imagen Open Graph (1200x630) generada con el branding de Cauce.
 // Se usa al compartir el sitio en WhatsApp, redes y buscadores.
@@ -7,24 +8,7 @@ export const alt =
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
-// El logo se carga DENTRO de la función (no en module-scope) y vía fetch sobre
-// un asset bundleado: readFileSync no existe en el runtime de Cloudflare Workers
-// y, si falla en la evaluación del módulo, tira abajo el resto del bundle.
-async function loadLogo(): Promise<string | null> {
-  try {
-    const data = await fetch(
-      new URL("../../public/logos/cauce-logo.png", import.meta.url),
-    ).then((res) => res.arrayBuffer());
-    const base64 = Buffer.from(data).toString("base64");
-    return `data:image/png;base64,${base64}`;
-  } catch {
-    return null; // si no se puede cargar, caemos al wordmark de texto
-  }
-}
-
-export default async function OpengraphImage() {
-  const logoSrc = await loadLogo();
-
+export default function OpengraphImage() {
   return new ImageResponse(
     (
       <div
@@ -39,22 +23,9 @@ export default async function OpengraphImage() {
           fontFamily: "sans-serif",
         }}
       >
-        {/* Marca — logotipo Cauce (con fallback a wordmark si no carga) */}
+        {/* Marca — logotipo Cauce (embebido como data URL inline) */}
         <div style={{ display: "flex", alignItems: "center" }}>
-          {logoSrc ? (
-            <img src={logoSrc} alt="Cauce" height={64} width={354} />
-          ) : (
-            <div
-              style={{
-                fontSize: 40,
-                fontWeight: 700,
-                color: "#6E2E3A",
-                letterSpacing: "-0.02em",
-              }}
-            >
-              cauce.
-            </div>
-          )}
+          <img src={CAUCE_LOGO_DATA_URL} alt="Cauce" height={64} width={354} />
         </div>
 
         {/* Titular */}
